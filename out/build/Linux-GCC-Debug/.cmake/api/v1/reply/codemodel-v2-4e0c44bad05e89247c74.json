@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "VideoSDKSessionRecorder",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "zoom_v-sdk_linux_bot::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-zoom_v-sdk_linux_bot-Debug-44d93215b3b26437daed.json",
+					"name" : "zoom_v-sdk_linux_bot",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/dreamtcs/.vs/zoom_v-sdk_linux_bot/5862e461-6752-4e17-80c2-8eed684dc8c1/out/build/Linux-GCC-Debug",
+		"source" : "/home/dreamtcs/.vs/zoom_v-sdk_linux_bot/5862e461-6752-4e17-80c2-8eed684dc8c1/src"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

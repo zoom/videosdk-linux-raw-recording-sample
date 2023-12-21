@@ -1,0 +1,8 @@
+session_name: "yoursessionname"
+session_token: "xxxx.yyyy.zzzz"
+session_psw: "12345678"
+GetVideoRawData: "true"
+GetAudioRawData: "true"
+SendVideoRawData: "false"
+SendAudioRawData: "false"
+
