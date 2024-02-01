@@ -7,9 +7,10 @@
 #include <iostream>
 #include <signal.h>
 #include <stdlib.h>
+#include <map>
+#include <algorithm>
 
 #include "glib.h"
-#include "json.hpp"
 #include "helpers/zoom_video_sdk_user_helper_interface.h"
 #include "zoom_video_sdk_api.h"
 #include "zoom_video_sdk_def.h"
@@ -40,7 +41,8 @@
 
 //needed for LTT
 #include "zoom_video_sdk_session_info_interface.h"
-#include "WebService.h"
+
+
 
 
 USING_ZOOM_VIDEO_SDK_NAMESPACE
@@ -51,7 +53,7 @@ std::string session_name, session_psw, session_token;
 
 //these are controls to demonstrate the flow
 bool getRawAudio = false;
-bool getRawVideo = true;
+bool getRawVideo = false;
 bool getRawShare = false;
 bool sendRawVideo = false;
 bool sendRawAudio = false;
@@ -286,6 +288,9 @@ public:
 	virtual void onTestMicStatusChanged(ZoomVideoSDK_TESTMIC_STATUS status) {}
 	virtual void onSelectedAudioDeviceChanged() {}
 
+	/// \brief Notify that the camera list has changed.
+	virtual void onCameraListChanged() {};
+
 	virtual void onLiveTranscriptionStatus(ZoomVideoSDKLiveTranscriptionStatus status) {
 	
 
@@ -437,7 +442,7 @@ void processLine(const std::string& line, std::map<std::string, std::string>& co
 
 		// Remove double-quote characters and carriage return ('\r') from the value
 		value.erase(std::remove_if(value.begin(), value.end(), [](char c) { return c == '"' || c == '\r'; }), value.end());
-
+	
 		// Store the key-value pair in the map
 		config[key] = value;
 	}

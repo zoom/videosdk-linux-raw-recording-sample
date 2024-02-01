@@ -28,7 +28,7 @@ sudo apt install -y libglib2.0-dev liblzma-dev libxcb-image0 libxcb-keysyms1 lib
 
 ### Download Linux Video SDK from marketplace.zoom.us
 
-1 Please decompress the downloaded `zoom-video-sdk-linux_x86_64-1.9.x.tar` and copy the SDK files from the decompressed folder to these sample code folders
+1 Please decompress the downloaded `zoom-video-sdk-linux_x86_64-1.10.x.tar` and copy the SDK files from the decompressed folder to these sample code folders
 
  - copy `/qt_libs/*.*` to `/lib/zoom_video_sdk/qt_libs/`
  - 4 of the `lib******.so` files to `/lib/zoom_video_sdk/lib******.so`
