@@ -80,6 +80,8 @@ class ZoomVideoSDKDelegate : public IZoomVideoSDKDelegate
 {
 public:
 	/// \brief Triggered when user enter the session.
+
+	//manage
 	virtual void onSessionJoin()
 	{
 		printf("Joined session successfully\n");
@@ -346,6 +348,7 @@ public:
 	virtual void onAnnotationHelperActived(void* handle) {};
 };
 
+//init
 void joinVideoSDKSession(std::string& session_name, std::string& session_psw, std::string& session_token)
 {
 	ZoomVideoSDKRawDataMemoryMode heap = ZoomVideoSDKRawDataMemoryMode::ZoomVideoSDKRawDataMemoryModeHeap;
@@ -367,6 +370,7 @@ void joinVideoSDKSession(std::string& session_name, std::string& session_psw, st
 	IZoomVideoSDKDelegate* listener = new ZoomVideoSDKDelegate();
 	video_sdk_obj->addListener(dynamic_cast<IZoomVideoSDKDelegate*>(listener));
 
+	//join
 	ZoomVideoSDKSessionContext session_context;
 	session_context.sessionName = session_name.c_str();
 	session_context.sessionPassword = session_psw.c_str();
@@ -548,13 +552,22 @@ gboolean timeout_callback(gpointer data)
 	return TRUE;
 }
 
+//leave
+//cleanup
 void my_handler(int s)
 {
 	printf("\nCaught signal %d\n", s);
 	video_sdk_obj->leaveSession(false);
+	
+	video_sdk_obj->cleanup();
+	
 	printf("Leaving session.\n");
+	video_sdk_obj = nullptr;
+	DestroyZoomVideoSDKObj();
+
 }
 
+//main
 int main(int argc, char* argv[])
 {
 	std::string self_dir = getSelfDirPath();

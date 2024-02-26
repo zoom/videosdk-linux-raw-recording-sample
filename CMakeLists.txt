@@ -16,10 +16,9 @@ pkg_check_modules(deps REQUIRED IMPORTED_TARGET glib-2.0)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/include/zoom_video_sdk)
-include_directories(${CMAKE_SOURCE_DIR}/include/ffmpeg)
 
 link_directories(${CMAKE_SOURCE_DIR}/lib/zoom_video_sdk)
-link_directories(${CMAKE_SOURCE_DIR}/lib/ffmpeg)
+
 
 add_executable(zoom_v-sdk_linux_bot ${CMAKE_SOURCE_DIR}/src/ZoomVideoSDKRawDataPipeDelegate.cpp  
                                 ${CMAKE_SOURCE_DIR}/src/ZoomVideoSDKVirtualAudioMic.cpp 
@@ -31,18 +30,10 @@ add_executable(zoom_v-sdk_linux_bot ${CMAKE_SOURCE_DIR}/src/ZoomVideoSDKRawDataP
 
 target_link_libraries(zoom_v-sdk_linux_bot PkgConfig::deps)
 target_link_libraries(zoom_v-sdk_linux_bot videosdk)
-target_link_libraries(zoom_v-sdk_linux_bot z pthread avformat)
-target_link_libraries(zoom_v-sdk_linux_bot z lzma swresample avcodec)
-target_link_libraries(zoom_v-sdk_linux_bot avutil)
-target_link_libraries(zoom_v-sdk_linux_bot swscale avfilter)
-target_link_libraries(zoom_v-sdk_linux_bot curl)
 
 configure_file(${CMAKE_SOURCE_DIR}/config.txt ${CMAKE_SOURCE_DIR}/bin/config.txt COPYONLY)
 file(COPY ${CMAKE_SOURCE_DIR}/lib/zoom_video_sdk/ DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 
-if(NOT EXISTS "${CMAKE_SOURCE_DIR}/lib/ffmpeg")
-    execute_process(COMMAND mkdir -p ${CMAKE_SOURCE_DIR}/lib/ffmpeg COMMAND tar -xf ${CMAKE_SOURCE_DIR}/lib/ffmpeg.tar.gz -C lib/ffmpeg WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
-endif()
 
 if(NOT EXISTS "${CMAKE_SOURCE_DIR}/lib/zoom_video_sdk/qt_libs")
     execute_process(COMMAND tar -xf ${CMAKE_SOURCE_DIR}/lib/qt_libs.tar.gz -C lib/zoom_video_sdk WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
