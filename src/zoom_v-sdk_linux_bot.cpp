@@ -108,9 +108,9 @@ public:
 			}
 		};
 
-	
-	
-	
+
+
+
 	}
 
 
@@ -194,7 +194,7 @@ public:
 
 
 	virtual void onChatNewMessageNotify(IZoomVideoSDKChatHelper* pChatHelper, IZoomVideoSDKChatMessage* messageItem) {
-	
+
 	};
 
 
@@ -272,12 +272,14 @@ public:
 
 
 	virtual void onCommandReceived(IZoomVideoSDKUser* sender, const zchar_t* strCmd) {
-		
+
 	}
 	virtual void onCommandChannelConnectResult(bool isSuccess) {
-	
+
 	};
 	virtual void onInviteByPhoneStatus(PhoneStatus status, PhoneFailedReason reason) {};
+	
+	virtual void onCalloutJoinSuccess(IZoomVideoSDKUser* pUser, const zchar_t* phoneNumber) {};
 	virtual void onCloudRecordingStatus(RecordingStatus status, IZoomVideoSDKRecordingConsentHandler* pHandler) {
 	
 	};
