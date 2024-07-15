@@ -13,12 +13,15 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(deps REQUIRED IMPORTED_TARGET glib-2.0)
+pkg_check_modules(GIO REQUIRED gio-2.0)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/include/zoom_video_sdk)
 
 link_directories(${CMAKE_SOURCE_DIR}/lib/zoom_video_sdk)
-
+link_directories(${GLIB_LIBRARY_DIRS} ${GIO_LIBRARY_DIRS})
+include_directories(${GLIB_INCLUDE_DIRS} ${GIO_INCLUDE_DIRS})
+add_definitions(${GLIB_CFLAGS_OTHER} ${GIO_CFLAGS_OTHER})
 
 add_executable(zoom_v-sdk_linux_bot ${CMAKE_SOURCE_DIR}/src/ZoomVideoSDKRawDataPipeDelegate.cpp  
                                 ${CMAKE_SOURCE_DIR}/src/ZoomVideoSDKVirtualAudioMic.cpp 
@@ -30,6 +33,8 @@ add_executable(zoom_v-sdk_linux_bot ${CMAKE_SOURCE_DIR}/src/ZoomVideoSDKRawDataP
 
 target_link_libraries(zoom_v-sdk_linux_bot PkgConfig::deps)
 target_link_libraries(zoom_v-sdk_linux_bot videosdk)
+
+target_link_libraries(zoom_v-sdk_linux_bot  ${GLIB_LIBRARIES} ${GIO_LIBRARIES})
 
 configure_file(${CMAKE_SOURCE_DIR}/config.txt ${CMAKE_SOURCE_DIR}/bin/config.txt COPYONLY)
 file(COPY ${CMAKE_SOURCE_DIR}/lib/zoom_video_sdk/ DESTINATION ${CMAKE_SOURCE_DIR}/bin)
